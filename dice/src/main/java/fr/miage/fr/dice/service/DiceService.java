@@ -31,7 +31,10 @@ public class DiceService {
 
     public List<Integer> rollMultipleDices(int count) {
         List<Integer> results = dice.rollMultiple(count);
-        DiceRollLog log = new DiceRollLog(count, results, LocalDateTime.now());
+        DiceRollLog log = new DiceRollLog();
+        log.setDiceCount(count);
+        log.setResults(results);
+        log.setTimestamp(LocalDateTime.now());
         diceRollLogRepository.save(log);
         return results;
     }
